@@ -37,8 +37,13 @@ export function Chrome() {
 
   return (
     <>
+      <a className="skip-link" href="#main-content">
+        Skip to content
+      </a>
       <Header onMenu={() => setMenuOpen(true)} />
-      <Outlet />
+      <div id="main-content">
+        <Outlet />
+      </div>
       <Footer />
       <Menu open={menuOpen} current={current} onClose={() => setMenuOpen(false)} />
     </>

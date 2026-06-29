@@ -3,7 +3,7 @@ import { Slash } from '../components/Slash';
 
 export default function Home() {
   return (
-    <>
+    <main>
       {/* HERO */}
       <section id="hero" className="hero">
         <div className="hero__top">
@@ -79,6 +79,6 @@ export default function Home() {
         </div>
         <div className="rule" />
       </section>
-    </>
+    </main>
   );
 }
