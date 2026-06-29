@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>College list builder — (Ad)mission Possible</title>
+  <meta name="description" content="A balanced list across reach, target, and likely — built on fit and finances, not luck." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body data-page="list-builder">
+
+  <main class="interior">
+    <div class="rule"></div>
+    <div class="crumbs">
+      <a data-nav href="how.html">How it works</a>
+      <span class="slash slash--sm"></span>
+      <span class="crumbs__current">College list builder</span>
+    </div>
+    <div class="rule"></div>
+
+    <div class="page-intro">
+      <h1 class="subhead" data-reveal>A list built on fit and finances, not luck.</h1>
+      <p class="page-intro__lede" data-reveal>Balance is the whole game. We help you spread your list so an acceptance is likely and an affordable acceptance is likely too.</p>
+    </div>
+
+    <div class="triband">
+      <div class="triband__col">
+        <div class="triband__k"><span class="accent">Reach</span></div>
+        <div class="triband__v">Ambitious, but worth the shot — especially where aid is strong.</div>
+      </div>
+      <div class="triband__slash"></div>
+      <div class="triband__col">
+        <div class="triband__k"><span class="accent">Target</span></div>
+        <div class="triband__v">Your profile lines up with their admitted range.</div>
+      </div>
+      <div class="triband__slash"></div>
+      <div class="triband__col">
+        <div class="triband__k"><span class="accent">Likely</span></div>
+        <div class="triband__v">A confident yes, and a price you can actually pay.</div>
+      </div>
+    </div>
+
+    <div class="label" style="margin:50px 0 0;">Fit, made concrete</div>
+    <div class="feature-rows" data-factors></div>
+
+    <p class="callout" data-reveal>Money decides where you can actually enroll. We teach FAFSA vs CSS, fee waivers, and the QuestBridge path as we go.</p>
+
+    <div class="section-cta">
+      <a class="circle circle--lg" href="router.html">Build my list</a>
+    </div>
+  </main>
+
+  <script src="./data.js"></script>
+  <script src="./chrome.js" defer></script>
+  <script src="./motion.js" defer></script>
+  <script>
+    (function () {
+      var esc = window.AP_DATA.esc;
+      var FACTORS = [
+        ['Academic', 'Programs, rigor, admit range vs your profile'],
+        ['Financial', 'Net price not sticker, aid generosity, no-loan policies'],
+        ['Social', 'Size, culture, first-gen support'],
+        ['Geographic', 'Distance, urban/rural, in-state systems'],
+        ['Cultural', 'Belonging, HBCU/HSI options']
+      ];
+      document.querySelector('[data-factors]').innerHTML = FACTORS.map(function (f) {
+        return '<div class="feature-row">' +
+          '<div class="feature-row__k">' + esc(f[0]) + '</div>' +
+          '<div class="feature-row__v">' + esc(f[1]) + '</div>' +
+        '</div>';
+      }).join('');
+    })();
+  </script>
+</body>
+</html>

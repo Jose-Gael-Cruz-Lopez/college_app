@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your plan — (Ad)mission Possible</title>
+  <meta name="description" content="Your pathway, a balanced starter list, and your track. Here's where to start." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body data-page="plan">
+
+  <main class="ov-plan" data-plan></main>
+
+  <script src="./data.js"></script>
+  <script src="./chrome.js" defer></script>
+  <script>
+    (function () {
+      var D = window.AP_DATA, esc = D.esc;
+      var intake = D.loadIntake();
+      if (!intake || !intake.plan) { window.location.href = 'router.html'; return; }
+      var p = intake.plan;
+
+      function activeTrack() { return intake.trackOverride || p.trackName || 'Self-paced course'; }
+
+      function schoolCol(title, list) {
+        var items = (list || []).map(function (s) {
+          return '<div class="ov-school"><div class="ov-school__name">' + esc(s.name) + '</div><div class="ov-school__tag">' + esc(s.tag) + '</div></div>';
+        }).join('');
+        return '<div><div class="ov-school__head">' + esc(title) + '</div>' + items + '</div>';
+      }
+
+      function render() {
+        var track = activeTrack();
+        var other = track === 'Self-paced course' ? 'Switch to 1:1 coaching' : 'Switch to self-paced course';
+        var cta = track === 'Self-paced course' ? 'Start my course' : 'Match me with a coach';
+        var host = document.querySelector('[data-plan]');
+        host.innerHTML =
+          '<h1 class="ov-plan__title">Your plan</h1>' +
+          '<p class="ov-plan__lede">Here\'s where to start.</p>' +
+          '<div class="ov-plan__sec">' +
+            '<div class="label">A — Your pathway</div>' +
+            '<div class="ov-plan__pathway">' + esc(p.pathway) + '</div>' +
+            '<p class="ov-plan__why">' + esc(p.why) + '</p>' +
+          '</div>' +
+          '<div class="ov-plan__sec">' +
+            '<div class="label ov-plan__sublabel">B — Your starter list</div>' +
+            '<div class="ov-plan__cols">' + schoolCol('Reach', p.reach) + schoolCol('Target', p.target) + schoolCol('Likely', p.likely) + '</div>' +
+            '<div class="ov-plan__hint">Refine this in the List Builder.</div>' +
+          '</div>' +
+          '<div class="ov-plan__track">' +
+            '<div><div class="label">C — Your track</div><div class="ov-plan__trackname">' + esc(track) + '</div></div>' +
+            '<button class="ov-plan__switch" data-toggle>' + esc(other) + '</button>' +
+          '</div>' +
+          '<div class="ov-plan__cta"><a class="circle circle--plan" href="dashboard.html">' + esc(cta) + '</a></div>';
+
+        host.querySelector('[data-toggle]').addEventListener('click', function () {
+          intake.trackOverride = activeTrack() === 'Self-paced course' ? '1:1 Coaching' : 'Self-paced course';
+          D.saveIntake(intake);
+          render();
+        });
+      }
+
+      render();
+    })();
+  </script>
+</body>
+</html>

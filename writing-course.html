@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The writing course — (Ad)mission Possible</title>
+  <meta name="description" content="Every lesson ends in production. You leave with a finished personal statement and a stack of supplementals." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body data-page="writing-course">
+
+  <main class="interior">
+    <div class="rule"></div>
+    <div class="crumbs">
+      <a data-nav href="offer.html">What we offer</a>
+      <span class="slash slash--sm"></span>
+      <span class="crumbs__current">The writing course</span>
+    </div>
+    <div class="rule"></div>
+
+    <div class="page-intro">
+      <h1 class="subhead" data-reveal>Show me you can write. Don't just tell me.</h1>
+      <p class="page-intro__lede" data-reveal>Every lesson ends in production. You write, right there, and a coach pushes you. You leave with a finished personal statement and a stack of supplementals.</p>
+    </div>
+
+    <div class="feature-rows" data-modules></div>
+
+    <div class="section-cta">
+      <a class="circle circle--lg" href="router.html">Start writing</a>
+    </div>
+  </main>
+
+  <script src="./data.js"></script>
+  <script src="./chrome.js" defer></script>
+  <script src="./motion.js" defer></script>
+  <script>
+    (function () {
+      var esc = window.AP_DATA.esc;
+      var MODULES = [
+        ['01', 'Essay topics', 'Values + Bullseye → three candidate topics'],
+        ['02', 'Research your story', 'Concrete detail that only you could write'],
+        ['03', 'Three structures', 'Montage / narrative / five-room, outlined'],
+        ['04', 'Ten compelling moves', 'Braid ideas into experience'],
+        ['05', 'Ten tactics', 'Rewrite your opening and closing lines'],
+        ['06', 'The personal statement', 'Draft the whole thing'],
+        ['07', 'Supplementals', 'Why Us / Why Major / Community / Activity'],
+        ['08', 'Short answers', 'The 50-word "popcorn" questions']
+      ];
+      document.querySelector('[data-modules]').innerHTML = MODULES.map(function (m) {
+        return '<div class="feature-row">' +
+          '<div class="feature-row__k"><span class="num">' + esc(m[0]) + '</span>' + esc(m[1]) + '</div>' +
+          '<div class="feature-row__v">' + esc(m[2]) + '</div>' +
+        '</div>';
+      }).join('');
+    })();
+  </script>
+</body>
+</html>

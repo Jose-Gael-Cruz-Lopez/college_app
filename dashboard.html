@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your dashboard — (Ad)mission Possible</title>
+  <meta name="description" content="A calm command center: your next step, course progress, list, deadlines, and coaching." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body data-page="dashboard">
+
+  <main class="ov-dash" data-dash></main>
+
+  <script src="./data.js"></script>
+  <script src="./chrome.js" defer></script>
+  <script>
+    (function () {
+      var D = window.AP_DATA, esc = D.esc;
+      var intake = D.loadIntake();
+      if (!intake || !intake.plan) { window.location.href = 'router.html'; return; }
+      var track = intake.trackOverride || intake.plan.trackName || 'Self-paced course';
+
+      var deadlines = [
+        { sys: 'QuestBridge', date: 'Sep 26' },
+        { sys: 'Common App (EA)', date: 'Nov 1' },
+        { sys: 'UC Application', date: 'Nov 30' }
+      ];
+      var dl = deadlines.map(function (d) {
+        return '<div class="ov-dl"><span>' + esc(d.sys) + '</span><span class="ov-dl__date">' + esc(d.date) + '</span></div>';
+      }).join('');
+      var coaching = track === '1:1 Coaching' ? 'Next session: Thu 4:00pm' : 'Get matched with a coach';
+
+      document.querySelector('[data-dash]').innerHTML =
+        '<div class="label">Your dashboard</div>' +
+        '<h1 class="ov-dash__title">Buenos días. Let\'s keep moving.</h1>' +
+        '<div class="ov-dash__next">' +
+          '<div><div class="label">Next step</div><div class="ov-dash__step">Finish Lesson 2</div></div>' +
+          '<a class="circle circle--dash" href="writing-course.html">Continue</a>' +
+        '</div>' +
+        '<div class="ov-dash__rows">' +
+          '<div class="ov-dash__row"><div class="ov-dash__k">Course progress</div><div><div class="ov-dash__sub">Module 2 of 8</div><div class="ov-bar"><div class="ov-bar__fill" style="width:25%"></div></div></div></div>' +
+          '<div class="ov-dash__row"><div class="ov-dash__k">Your list</div><div class="ov-dash__v">3 reach · 3 target · 3 likely</div></div>' +
+          '<div class="ov-dash__row"><div class="ov-dash__k">Deadlines</div><div class="ov-dash__deadlines">' + dl + '</div></div>' +
+          '<div class="ov-dash__row"><div class="ov-dash__k">Coaching</div><div class="ov-dash__v">' + esc(coaching) + '</div></div>' +
+        '</div>';
+    })();
+  </script>
+</body>
+</html>
