@@ -10,11 +10,11 @@
   var S = '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">';
 
   var ICONS = {
-    // Route — a winding hand-drawn path with a pin
+    // Route — a compass (navigation)
     route: S +
-      '<path d="M13 7c6 2-2 8 4 11 6 3-3 8 3 12"/>' +
-      '<path d="M31 27c-4 0-7 3-7 7 0 5 7 12 7 12s7-7 7-12c0-4-3-7-7-7z"/>' +
-      '<path d="M31 32.5c.6 0 .6 1 0 1"/></svg>',
+      '<circle cx="24" cy="24" r="17"/>' +
+      '<path d="M31 17l-5 9-9 5 5-9z"/>' +
+      '<circle cx="24" cy="24" r="1.3"/></svg>',
 
     // Learn & write — a pencil
     write: S +
@@ -29,10 +29,10 @@
       '<path d="M8 22l2.5 3 4-5"/>' +
       '<path d="M8.5 34h4.5"/></svg>',
 
-    // Apply — a paper plane
+    // Apply — a paper plane (send)
     apply: S +
-      '<path d="M7 24L41 8 32 41l-8-13z"/>' +
-      '<path d="M24 28l8-20"/></svg>',
+      '<path d="M44 5L4 19l18 7 7 18z"/>' +
+      '<path d="M44 5L22 26"/></svg>',
 
     // Submit — a flag
     submit: S +
