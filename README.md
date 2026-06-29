@@ -7,72 +7,80 @@ and a study track — followed by a student dashboard.
 
 Built for the first in their family. Free.
 
-## What's here
+## Stack
 
-This is a static, dependency-free implementation of the
-**Admission Possible** design (imported from Claude Design). It runs as
-plain HTML/CSS/JS — no build step, no framework. It is a **multi-page
-site**: every section is its own page, sharing injected chrome.
+Migrated from a vanilla multi-page site to a single-page app:
 
-### Pages
+- **React 18** + **TypeScript** (strict)
+- **Vite** (dev server + build)
+- **React Router** for client-side routing
 
-| Page | Contents |
-|------|----------|
-| `index.html` | Home — hero, trust strip, manifesto, closing CTA |
-| `how.html` | How it works — the five-step process band |
-| `offer.html` | What we offer — self-paced course + 1:1 coaching |
-| `writing-course.html` | The writing course — 8 produce-as-you-learn modules |
-| `list-builder.html` | College list builder — reach/target/likely + fit factors |
-| `pathways.html` | Application pathways — the systems table |
-| `coaching.html` | 1:1 coaching detail |
-| `join.html` | Join form |
-| `router.html` → `plan.html` → `dashboard.html` | The intake flow |
+The original vanilla implementation is preserved in git history (see the
+`legacy/` directory before the migration commits).
 
-### Shared modules
+## Getting started
 
-| File | Responsibility |
-|------|----------------|
-| `styles.css` | All styling and the responsive layout |
-| `data.js` | Nav list, questions, pathways, `computePlan()`, sessionStorage helpers |
-| `chrome.js` | Injects the header, full-screen menu, footer, and inline-slash crumb bands on every page |
-| `motion.js` | Reveal/scramble/slash scroll motion |
+```bash
+npm install
+npm run dev        # http://localhost:5173
+npm run build      # type-check (tsc -b) + production build to dist/
+npm run preview    # serve the production build
+```
 
-Each page sets `<body data-page="...">`, includes `data.js` then
-`chrome.js` + `motion.js`, and supplies only its unique `<main>` content.
+## Project structure
+
+```
+src/
+  main.tsx              # entry; mounts <App/> in <BrowserRouter>
+  App.tsx               # routes, all nested under the Chrome layout
+  types.ts              # shared domain types
+  data/                 # nav, questions, pathways, computePlan, sessionStorage
+  hooks/
+    useReveal.ts        # scroll reveal/slash + hero scramble (per route)
+    useScrollHideHeader.ts
+  components/            # Chrome, Header, Menu, Footer, Crumbs, Icon, Circle, Slash, Wordmark
+  pages/                # Home, How, Offer, Pathways, Coaching, Join,
+                        # WritingCourse, ListBuilder, Router, Plan, Dashboard
+  styles/global.css     # the full design system (ported verbatim)
+public/icons/           # static assets (the supplied learn-write pencil)
+```
+
+## Routes
+
+| Path | Page |
+|------|------|
+| `/` | Home |
+| `/how` | How it works |
+| `/offer` | What we offer |
+| `/writing-course` | The writing course |
+| `/list-builder` | College list builder |
+| `/pathways` | Application pathways |
+| `/coaching` | Coaching |
+| `/join` | Join |
+| `/router` → `/plan` → `/dashboard` | The intake flow |
 
 ## The intake flow
 
-`Get my plan` goes to `router.html`, a 7-question intake (grade,
-first-gen status, aid eligibility, GPA + rigor, college types, regions,
-and study track). On the last step the answers and the computed plan are
-saved to `sessionStorage` and the user is sent to `plan.html`; the plan's
-track toggle persists and is reflected on `dashboard.html`. Visiting
-`plan.html` or `dashboard.html` without intake redirects back to the
-router. `computePlan()` maps the answers to:
+`Get my plan` goes to `/router`, a 7-question intake. On the last step the
+answers and the computed plan are saved to `sessionStorage` and the user is
+sent to `/plan`; the plan's track toggle persists and is reflected on
+`/dashboard`. Visiting `/plan` or `/dashboard` without intake redirects back
+to the router. `computePlan()` maps answers to a pathway, a balanced
+reach/target/likely list, and a track.
 
-- **A pathway** — e.g. _QuestBridge + Common App_, _UC Application + Common App_,
-  _CBCA + Common App_, _ApplyTexas + Common App_, or _Common App_.
-- **A starter list** — reach / target / likely schools, weighted by GPA.
-- **A track** — self-paced course or 1:1 coaching (switchable on the plan screen).
+## Deployment
 
-The plan then leads into a dashboard with next step, course progress,
-list summary, deadlines, and coaching status.
-
-## Running it locally
-
-No dependencies. Serve the folder over HTTP:
-
-```bash
-python3 -m http.server 8000
-# then open http://localhost:8000
-```
+This is a client-routed SPA, so the host must serve `index.html` for every
+path (preserving the old site's direct-URL behaviour). `vercel.json` does
+this with a catch-all rewrite. On other static hosts, add the equivalent
+SPA fallback (e.g. a `404.html` copy of `index.html` for GitHub Pages).
 
 ## Design notes
 
 - **Type:** Geist Mono (display) + Inter (body).
 - **Palette:** warm paper `#ECEAE4`, ink `#3A3A36`, electric `#3B33F0`.
 - **Motion:** scroll-triggered reveals and rotating hairline "slashes",
-  with an `IntersectionObserver` plus a visibility/timeout fallback so
-  content never gets stuck hidden. Respects `prefers-reduced-motion`.
-- **Accessibility:** keyboard-focusable controls, reduced-motion support,
-  and a responsive layout down to small screens.
+  re-scanned on each route change, with an `IntersectionObserver` plus a
+  visibility/timeout fallback. Respects `prefers-reduced-motion`.
+- **Icons:** original freehand line icons, plus the supplied
+  `learn-write.png` (Streamline Freehand) for the Learn & write step.
