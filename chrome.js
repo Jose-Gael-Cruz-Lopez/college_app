@@ -60,7 +60,7 @@
     f.innerHTML =
       '<div class="rule"></div>' +
       '<div class="footer__grid">' +
-        '<div>' + wordmark(false) +
+        '<div class="footer__col--left">' + wordmark(false) +
           '<p class="footer__blurb">Built for the first in their family. The college application, demystified. Where to apply, how to apply, how to write the essays that get you in. Free.</p>' +
         '</div>' +
         '<div class="vrule vrule--center"></div>' +
@@ -76,13 +76,15 @@
 
   // ---- inline-slash crumb band on interior pages ----
   function fillCrumbs() {
+    var slash = '<span class="slash slash--nav"></span>';
     document.querySelectorAll('[data-crumbs]').forEach(function (host) {
-      var html = NAV.map(function (n) {
+      var items = NAV.map(function (n) {
         if (n.id === current) return '<span class="crumbs__current">' + esc(n.label) + '</span>';
         return '<a data-nav href="' + n.href + '">' + esc(n.label) + '</a>';
-      }).join('<span class="slash slash--sm"></span>');
+      });
       host.className = 'crumbs';
-      host.innerHTML = html;
+      // leading + interleaved + trailing slash, spread across the full width
+      host.innerHTML = slash + items.join(slash) + slash;
     });
   }
 
