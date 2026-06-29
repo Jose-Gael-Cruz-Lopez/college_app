@@ -16,11 +16,12 @@
       '<path d="M31 17l-5 9-9 5 5-9z"/>' +
       '<circle cx="24" cy="24" r="1.3"/></svg>',
 
-    // Learn & write — a pencil
-    write: S +
-      '<path d="M9 39c-.4-2 .2-4 .8-5L29 14l6 6-19 19c-1 .8-3 1.4-5 1z"/>' +
-      '<path d="M27 16l6 6"/>' +
-      '<path d="M9.5 38.5l5.5 1"/></svg>',
+    // Learn & write — a pen drawing an ink line (bolder, freehand)
+    write: '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">' +
+      '<path d="M29 9l10 10-18 18-10-10z"/>' +
+      '<path d="M11 27l-3 13 13-3z"/>' +
+      '<path d="M30 10l9 9"/>' +
+      '<path d="M5 41q3.2-3.6 6.4 0t6.4 0"/></svg>',
 
     // Build your list — a checklist
     list: S +

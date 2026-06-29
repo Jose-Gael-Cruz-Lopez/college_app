@@ -21,9 +21,15 @@
     var h = document.createElement('header');
     h.className = 'header';
     h.setAttribute('data-header', '');
+    var hamburger =
+      '<svg viewBox="0 0 36 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">' +
+        '<path d="M3 5q4.5-3 9 0t9 0t9 0"/>' +
+        '<path d="M3 13q4.5-3 9 0t9 0t9 0"/>' +
+        '<path d="M3 21q4.5-3 9 0t9 0t9 0"/>' +
+      '</svg>';
     h.innerHTML =
       '<div class="header__bar">' +
-        '<button class="menu-toggle" data-menu-toggle aria-label="Open menu"><span></span><span></span><span></span></button>' +
+        '<button class="menu-toggle" data-menu-toggle aria-label="Open menu">' + hamburger + '</button>' +
         '<a class="wordmark-link" href="index.html" aria-label="Home">' + wordmark(false) + '</a>' +
       '</div>' +
       '<div class="rule"></div>';
