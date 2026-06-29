@@ -134,6 +134,14 @@ input, textarea { font-family: inherit; }
   display: flex; flex-direction: column; gap: 34px;
 }
 
+/* ---- freehand icons ---- */
+.icon { display: inline-flex; align-items: center; justify-content: center; color: var(--ink); }
+.icon svg { width: var(--icon-size, 30px); height: var(--icon-size, 30px); display: block; }
+.step-icon { --icon-size: 40px; display: block; margin-bottom: 16px; }
+.offer__head-icon { --icon-size: 34px; display: block; margin-bottom: 16px; }
+.row-icon { --icon-size: 24px; margin-right: 14px; flex: none; }
+.triband__icon { --icon-size: 34px; display: block; margin-bottom: 14px; }
+
 /* ---- how it works ---- */
 .how { padding: 0 var(--pad-x) 110px; }
 .how__track { display: flex; align-items: stretch; min-height: 440px; }

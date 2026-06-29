@@ -16,6 +16,7 @@
 
   <script src="./data.js"></script>
   <script src="./chrome.js" defer></script>
+  <script src="./icons.js" defer></script>
   <script>
     (function () {
       var D = window.AP_DATA, esc = D.esc;
@@ -41,10 +42,10 @@
           '<a class="circle circle--dash" href="writing-course.html">Continue</a>' +
         '</div>' +
         '<div class="ov-dash__rows">' +
-          '<div class="ov-dash__row"><div class="ov-dash__k">Course progress</div><div><div class="ov-dash__sub">Module 2 of 8</div><div class="ov-bar"><div class="ov-bar__fill" style="width:25%"></div></div></div></div>' +
-          '<div class="ov-dash__row"><div class="ov-dash__k">Your list</div><div class="ov-dash__v">3 reach · 3 target · 3 likely</div></div>' +
-          '<div class="ov-dash__row"><div class="ov-dash__k">Deadlines</div><div class="ov-dash__deadlines">' + dl + '</div></div>' +
-          '<div class="ov-dash__row"><div class="ov-dash__k">Coaching</div><div class="ov-dash__v">' + esc(coaching) + '</div></div>' +
+          '<div class="ov-dash__row"><div class="ov-dash__k"><span class="row-icon" data-icon="course"></span>Course progress</div><div><div class="ov-dash__sub">Module 2 of 8</div><div class="ov-bar"><div class="ov-bar__fill" style="width:25%"></div></div></div></div>' +
+          '<div class="ov-dash__row"><div class="ov-dash__k"><span class="row-icon" data-icon="bookmark"></span>Your list</div><div class="ov-dash__v">3 reach · 3 target · 3 likely</div></div>' +
+          '<div class="ov-dash__row"><div class="ov-dash__k"><span class="row-icon" data-icon="calendar"></span>Deadlines</div><div class="ov-dash__deadlines">' + dl + '</div></div>' +
+          '<div class="ov-dash__row"><div class="ov-dash__k"><span class="row-icon" data-icon="coaching"></span>Coaching</div><div class="ov-dash__v">' + esc(coaching) + '</div></div>' +
         '</div>';
     })();
   </script>
