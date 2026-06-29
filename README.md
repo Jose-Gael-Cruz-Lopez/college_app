@@ -11,20 +11,44 @@ Built for the first in their family. Free.
 
 This is a static, dependency-free implementation of the
 **Admission Possible** design (imported from Claude Design). It runs as
-plain HTML/CSS/JS — no build step, no framework.
+plain HTML/CSS/JS — no build step, no framework. It is a **multi-page
+site**: every section is its own page, sharing injected chrome.
+
+### Pages
+
+| Page | Contents |
+|------|----------|
+| `index.html` | Home — hero, trust strip, manifesto, closing CTA |
+| `how.html` | How it works — the five-step process band |
+| `offer.html` | What we offer — self-paced course + 1:1 coaching |
+| `writing-course.html` | The writing course — 8 produce-as-you-learn modules |
+| `list-builder.html` | College list builder — reach/target/likely + fit factors |
+| `pathways.html` | Application pathways — the systems table |
+| `coaching.html` | 1:1 coaching detail |
+| `join.html` | Join form |
+| `router.html` → `plan.html` → `dashboard.html` | The intake flow |
+
+### Shared modules
 
 | File | Responsibility |
 |------|----------------|
-| `index.html` | Semantic markup for the landing sections + overlay mount |
 | `styles.css` | All styling and the responsive layout |
-| `app.js` | Landing behaviour: nav, scroll-hide header, reveal/scramble motion, pathways table |
-| `flow.js` | The interactive flow: menu, router quiz, computed plan, dashboard |
+| `data.js` | Nav list, questions, pathways, `computePlan()`, sessionStorage helpers |
+| `chrome.js` | Injects the header, full-screen menu, footer, and inline-slash crumb bands on every page |
+| `motion.js` | Reveal/scramble/slash scroll motion |
+
+Each page sets `<body data-page="...">`, includes `data.js` then
+`chrome.js` + `motion.js`, and supplies only its unique `<main>` content.
 
 ## The intake flow
 
-`Get my plan` opens a 7-question router (grade, first-gen status,
-aid eligibility, GPA + rigor, college types, regions, and study track).
-`computePlan()` maps the answers to:
+`Get my plan` goes to `router.html`, a 7-question intake (grade,
+first-gen status, aid eligibility, GPA + rigor, college types, regions,
+and study track). On the last step the answers and the computed plan are
+saved to `sessionStorage` and the user is sent to `plan.html`; the plan's
+track toggle persists and is reflected on `dashboard.html`. Visiting
+`plan.html` or `dashboard.html` without intake redirects back to the
+router. `computePlan()` maps the answers to:
 
 - **A pathway** — e.g. _QuestBridge + Common App_, _UC Application + Common App_,
   _CBCA + Common App_, _ApplyTexas + Common App_, or _Common App_.
