@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pathways — (Ad)mission Possible</title>
+  <meta name="description" content="Every application system, side by side: Common App, UC Application, QuestBridge, Coalition, ApplyTexas, and CBCA." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body data-page="pathways">
+
+  <main class="interior">
+    <div class="rule"></div>
+    <div data-crumbs></div>
+    <div class="rule"></div>
+
+    <div class="page-intro">
+      <h1 class="page-intro__title" data-reveal>Application pathways</h1>
+      <p class="page-intro__lede" data-reveal>Every front door, side by side. We route you to the right ones based on your plan.</p>
+    </div>
+
+    <div class="pathways__table" data-pathways></div>
+    <div class="pathways__note">Deadlines and mechanics change yearly. We pull current details at build time.</div>
+
+    <div class="section-cta">
+      <a class="circle circle--lg" href="router.html">See my pathway</a>
+    </div>
+  </main>
+
+  <script src="./data.js"></script>
+  <script src="./chrome.js" defer></script>
+  <script src="./motion.js" defer></script>
+  <script>
+    (function () {
+      var P = window.AP_DATA, esc = P.esc;
+      var host = document.querySelector('[data-pathways]');
+      host.innerHTML = P.PATHWAYS.map(function (row) {
+        return '<div class="pathways__row">' +
+          '<div class="pathways__name">' + esc(row.name) + '</div>' +
+          '<div class="pathways__cell">' + esc(row.bestFor) + '</div>' +
+          '<div class="pathways__cell">' + esc(row.fact) + '</div>' +
+          '<div class="pathways__cell pathways__cell--muted">' + esc(row.money) + '</div>' +
+        '</div>';
+      }).join('');
+    })();
+  </script>
+</body>
+</html>
