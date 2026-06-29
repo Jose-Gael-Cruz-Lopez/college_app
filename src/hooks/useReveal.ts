@@ -16,9 +16,7 @@ export function useReveal() {
     root.classList.add('is-animated');
     root.style.setProperty('--slash-angle', `${SLASH_ANGLE}deg`);
 
-    const all = Array.from(
-      document.querySelectorAll<HTMLElement>('[data-slash],[data-reveal]'),
-    );
+    const all = Array.from(document.querySelectorAll<HTMLElement>('[data-slash],[data-reveal]'));
     const show = (n: HTMLElement) => {
       n.classList.add('shown');
       n.dataset.shown = '1';

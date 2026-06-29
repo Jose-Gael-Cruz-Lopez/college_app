@@ -19,8 +19,7 @@ export default function Router() {
   const isLast = step === total - 1;
   const canNext = q.multi ? Array.isArray(sel) && sel.length > 0 : !!sel;
 
-  const isSelected = (opt: string) =>
-    q.multi ? Array.isArray(sel) && sel.indexOf(opt) >= 0 : sel === opt;
+  const isSelected = (opt: string) => (q.multi ? Array.isArray(sel) && sel.indexOf(opt) >= 0 : sel === opt);
 
   const select = (opt: string) => {
     setAnswers((prev) => {
@@ -63,11 +62,7 @@ export default function Router() {
     <main>
       <div className="ov-progress">
         {QUESTIONS.map((_, i) => (
-          <div
-            key={i}
-            className="ov-seg"
-            style={{ background: i <= step ? 'var(--accent)' : 'var(--hairline)' }}
-          />
+          <div key={i} className="ov-seg" style={{ background: i <= step ? 'var(--accent)' : 'var(--hairline)' }} />
         ))}
       </div>
       <div className="ov-router">

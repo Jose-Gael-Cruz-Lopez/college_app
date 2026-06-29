@@ -10,8 +10,8 @@ export function Footer() {
         <div className="footer__col--left">
           <Wordmark />
           <p className="footer__blurb">
-            Built for the first in their family. The college application, demystified. Where to apply, how to apply,
-            how to write the essays that get you in. Free.
+            Built for the first in their family. The college application, demystified. Where to apply, how to apply, how
+            to write the essays that get you in. Free.
           </p>
         </div>
         <div className="vrule vrule--center" />

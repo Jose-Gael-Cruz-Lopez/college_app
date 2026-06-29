@@ -47,17 +47,17 @@ public/icons/           # static assets (the supplied learn-write pencil)
 
 ## Routes
 
-| Path | Page |
-|------|------|
-| `/` | Home |
-| `/how` | How it works |
-| `/offer` | What we offer |
-| `/writing-course` | The writing course |
-| `/list-builder` | College list builder |
-| `/pathways` | Application pathways |
-| `/coaching` | Coaching |
-| `/join` | Join |
-| `/router` → `/plan` → `/dashboard` | The intake flow |
+| Path                               | Page                 |
+| ---------------------------------- | -------------------- |
+| `/`                                | Home                 |
+| `/how`                             | How it works         |
+| `/offer`                           | What we offer        |
+| `/writing-course`                  | The writing course   |
+| `/list-builder`                    | College list builder |
+| `/pathways`                        | Application pathways |
+| `/coaching`                        | Coaching             |
+| `/join`                            | Join                 |
+| `/router` → `/plan` → `/dashboard` | The intake flow      |
 
 ## The intake flow
 

@@ -21,11 +21,7 @@ export function Menu({ open, current, onClose }: MenuProps) {
         {NAV.map((n, i) => (
           <Fragment key={n.id}>
             {i > 0 && <span className="ov-menu__sep"> \ </span>}
-            <Link
-              className={'ov-menu__link' + (n.id === current ? ' is-current' : '')}
-              to={n.path}
-              onClick={onClose}
-            >
+            <Link className={'ov-menu__link' + (n.id === current ? ' is-current' : '')} to={n.path} onClick={onClose}>
               {n.label}
             </Link>
           </Fragment>

@@ -15,7 +15,8 @@ export function computePlan(answers: Answers): Plan {
 
   if (firstgen && pellish && gpaTop) {
     pathway = 'QuestBridge + Common App';
-    why = 'Your profile fits the National Match. Pair it with Common App so you keep every door open while you wait on Match results.';
+    why =
+      'Your profile fits the National Match. Pair it with Common App so you keep every door open while you wait on Match results.';
   } else if (regions.indexOf('West') >= 0) {
     pathway = 'UC Application + Common App';
     why = 'The UC system needs its own application and essays. Common App covers everything else in one place.';
