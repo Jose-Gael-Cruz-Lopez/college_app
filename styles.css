@@ -137,6 +137,7 @@ input, textarea { font-family: inherit; }
 /* ---- freehand icons ---- */
 .icon { display: inline-flex; align-items: center; justify-content: center; color: var(--ink); }
 .icon svg { width: var(--icon-size, 30px); height: var(--icon-size, 30px); display: block; }
+.icon .icon-img { width: var(--icon-size, 30px); height: var(--icon-size, 30px); object-fit: contain; display: block; }
 .step-icon { --icon-size: 40px; display: block; margin-bottom: 16px; }
 .offer__head-icon { --icon-size: 34px; display: block; margin-bottom: 16px; }
 .row-icon { --icon-size: 24px; margin-right: 14px; flex: none; }
