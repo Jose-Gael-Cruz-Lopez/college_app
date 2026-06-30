@@ -169,6 +169,20 @@ sent to `/plan`; the plan's track toggle persists and is reflected on
 to the router. `computePlan()` maps answers to a pathway, a balanced
 reach/target/likely list, and a track.
 
+---
+
+## Design system
+
+- **Type** — Geist Mono (display) + Inter (body).
+- **Palette**
+  | Token       | Value       | Use                 |
+  | ----------- | ----------- | ------------------- |
+  | `--bg`      | `#F5F2E0`   | warm cream paper    |
+  | `--ink`     | `#3A3A36`   | text                |
+  | `--muted`   | `#6F6E68`   | secondary text      |
+  | `--accent`  | `#E8491D`   | orange accent       |
+  | `--card`    | `#FBFAF1`   | surfaces            |
+  | `--hairline`| `#C9C6BE`   | rules / borders     |
 ## Deployment
 
 This is a client-routed SPA, so the host must serve `index.html` for every
