@@ -131,3 +131,10 @@ export function IntroFloat() {
                     '--o': t.o,
                     '--blur': `${d.blur}px`,
                   } as React.CSSProperties
+                }
+              >
+                <div
+                  className="itile__inner"
+                  style={
+                    {
+                      '--fx': `${4 + (i % 5) * 2}px`,
