@@ -79,6 +79,9 @@ npm run preview    # serve the production build
 ## Project structure
 
 ```
+public/
+  icons/                # static assets (the supplied learn-write pencil)
+  intro/                # thumbnail art for the Home intro animation (t1–t8.svg)
 src/
   main.tsx              # entry; mounts <App/> in <BrowserRouter>
   App.tsx               # routes, all nested under the Chrome layout
