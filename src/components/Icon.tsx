@@ -94,6 +94,7 @@ const PATHS: Record<Exclude<IconName, 'write'>, ReactNode> = {
 
 // Icons supplied as PNGs instead of inline SVG paths.
 const PNG_ICONS: Partial<Record<IconName, string>> = {
+  route: '/icons/route.png',
   write: '/icons/learn-write.png',
   list: '/icons/list.png',
   submit: '/icons/submit.png',
