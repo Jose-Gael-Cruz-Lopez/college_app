@@ -6,7 +6,7 @@ import { renderWithRouter } from './test/utils';
 describe('App routing', () => {
   it('renders Home at /', () => {
     renderWithRouter(<App />, { route: '/' });
-    expect(screen.getByText("Admission shouldn't")).toBeInTheDocument();
+    expect(screen.getByText('Impossible is')).toBeInTheDocument();
   });
 
   it('renders How it works at /how', () => {
@@ -21,6 +21,6 @@ describe('App routing', () => {
 
   it('falls back to Home for unknown routes', () => {
     renderWithRouter(<App />, { route: '/does-not-exist' });
-    expect(screen.getByText("Admission shouldn't")).toBeInTheDocument();
+    expect(screen.getByText('Impossible is')).toBeInTheDocument();
   });
 });
