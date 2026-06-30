@@ -124,3 +124,10 @@ export function IntroFloat() {
                     width: `${t.w}px`,
                     zIndex: d.z,
                     '--ox': `${(ux * outDist).toFixed(1)}px`,
+                    '--oy': `${(uy * outDist).toFixed(1)}px`,
+                    '--ix': `${(-ux * inDist).toFixed(1)}px`,
+                    '--iy': `${(-uy * inDist).toFixed(1)}px`,
+                    '--rot': `${t.rot}deg`,
+                    '--o': t.o,
+                    '--blur': `${d.blur}px`,
+                  } as React.CSSProperties
