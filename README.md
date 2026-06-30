@@ -64,11 +64,17 @@ npm run preview    # serve the production build
 
 ## Available scripts
 
-Tests live next to the code they cover (`*.test.ts[x]`) and include
-`computePlan` branch coverage, storage round-trips, component unit tests,
-and an end-to-end intake-flow test (router → plan → dashboard). CI
-(`.github/workflows/ci.yml`) runs typecheck, lint, format check, tests,
-and build on every push and PR to `main`.
+| Script                | What it does                                  |
+| --------------------- | --------------------------------------------- |
+| `npm run dev`         | Start the Vite dev server with HMR            |
+| `npm run build`       | Type-check then build to `dist/`              |
+| `npm run preview`     | Serve the production build locally            |
+| `npm run typecheck`   | `tsc`, no emit                                |
+| `npm run lint`        | ESLint (flat config, TS + react-hooks)        |
+| `npm run format`      | Prettier write (`format:check` to verify)     |
+| `npm test`            | Vitest + Testing Library (jsdom)              |
+
+---
 
 ## Project structure
 
