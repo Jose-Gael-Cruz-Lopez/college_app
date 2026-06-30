@@ -82,3 +82,10 @@ export function IntroFloat() {
       const inward = tri * tri * (3 - 2 * tri); // smoothstep
       stage.style.setProperty('--inward', inward.toFixed(4));
     };
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    };
+
+    update();
