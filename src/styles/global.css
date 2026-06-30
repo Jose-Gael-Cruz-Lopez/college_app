@@ -372,6 +372,14 @@ a:focus-visible, button:focus-visible, [role='button']:focus-visible { outline: 
 .center-statement { font-family: var(--mono); font-weight: 700; text-transform: uppercase; font-size: clamp(24px, 3.4vw, 46px); line-height: 1.1; text-align: center; margin: 0 auto; max-width: 22ch; padding: 60px 0; }
 
 /* ============================================================
+   INTRO — floating-tiles scroll story (Floema-style)
+   ============================================================ */
+.intro { position: relative; height: 170vh; }
+.intro__stage {
+  --inward: 0;
+  position: sticky; top: 0; height: 100vh; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
    RESPONSIVE
    ============================================================ */
 @media (max-width: 860px) {
