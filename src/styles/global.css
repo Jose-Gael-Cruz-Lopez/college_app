@@ -108,6 +108,7 @@ a:focus-visible, button:focus-visible, [role='button']:focus-visible { outline: 
 .header { position: sticky; top: 0; z-index: 60; background: var(--bg); transition: transform .35s ease; }
 .header__bar { display: flex; align-items: center; justify-content: space-between; padding: 24px var(--pad-x) 18px; }
 .menu-toggle { display: block; width: 36px; cursor: pointer; padding: 4px 0; color: var(--ink); }
+.menu-toggle__img { display: block; width: 100%; height: auto; }
 .menu-toggle svg { width: 36px; height: auto; display: block; }
 
 /* ---- hero ---- */
