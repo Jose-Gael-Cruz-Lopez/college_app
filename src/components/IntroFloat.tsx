@@ -12,3 +12,10 @@ const IMAGES = [
   '/intro/t8.svg',
 ];
 
+type Depth = 'far' | 'mid' | 'near';
+type Vis = 'mobile' | 'tablet' | 'desktop'; // minimum breakpoint at which the tile shows
+
+type Tile = {
+  x: number; // % left  (50 = centre)
+  y: number; // % top   (50 = centre)
+  w: number; // px width
