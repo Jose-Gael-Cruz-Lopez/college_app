@@ -90,7 +90,9 @@ src/
   hooks/
     useReveal.ts        # scroll reveal/slash + hero scramble (per route)
     useScrollHideHeader.ts
-  components/            # Chrome, Header, Menu, Footer, Crumbs, Icon, Circle, Slash, Wordmark
+  components/
+    Chrome, Header, Menu, Footer, Crumbs, Icon, Circle, Slash, Wordmark
+    IntroFloat.tsx      # the Home floating-image hero (see below)
   pages/                # Home, How, Offer, Pathways, Coaching, Join,
                         # WritingCourse, ListBuilder, Router, Plan, Dashboard
   styles/global.css     # the full design system (ported verbatim)
