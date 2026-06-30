@@ -211,6 +211,7 @@ an end-to-end intake-flow test (router → plan → dashboard). CI
 build on every push and PR to `main`.
 
 ---
+
 ## Deployment
 
 This is a client-routed SPA, so the host must serve `index.html` for every
