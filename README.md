@@ -197,6 +197,20 @@ reach/target/likely list, and a track.
 - Skip link, `main` landmark, and visible focus styles.
 - The menu dialog has dialog semantics and moves focus on open.
 - Router options are keyboard-operable.
+- All motion honours `prefers-reduced-motion`; decorative intro thumbnails use
+  empty `alt` text.
+
+---
+
+## Testing & CI
+
+Tests live next to the code they cover (`*.test.ts[x]`) and include
+`computePlan` branch coverage, storage round-trips, component unit tests, and
+an end-to-end intake-flow test (router → plan → dashboard). CI
+(`.github/workflows/ci.yml`) runs typecheck, lint, format check, tests, and
+build on every push and PR to `main`.
+
+---
 ## Deployment
 
 This is a client-routed SPA, so the host must serve `index.html` for every
