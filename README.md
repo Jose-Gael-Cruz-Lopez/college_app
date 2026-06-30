@@ -146,6 +146,20 @@ deadline."_ sits centered while ~20 thumbnail images orbit it.
 | ---------------- | ------------------------------------- |
 | `.itile`         | scatter position + scroll parallax    |
 | `.itile__inner`  | continuous idle drift                 |
+| `.itile__media`  | one-shot load arrival                 |
+
+**Performance & a11y** — only `transform` / `opacity` animate, `will-change`
+is scoped to animated wrappers, far images lazy-load, and
+`prefers-reduced-motion` disables drift/parallax in favour of a static
+fade-in. The headline is always real text.
+
+**Swapping in real photos** — drop files into `public/intro/` and update the
+`IMAGES` array at the top of `IntroFloat.tsx`; positions and motion keep
+working unchanged. The included `t1.svg`–`t8.svg` are brand-palette
+placeholders.
+
+---
+
 ## The intake flow
 
 `Get my plan` goes to `/router`, a 7-question intake. On the last step the
