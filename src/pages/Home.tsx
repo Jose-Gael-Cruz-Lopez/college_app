@@ -4,6 +4,9 @@ import { IntroFloat } from '../components/IntroFloat';
 export default function Home() {
   return (
     <main>
+      {/* INTRO — floating-tiles scroll story */}
+      <IntroFloat />
+
       {/* HERO */}
       <section id="hero" className="hero">
         <div className="hero__top">
