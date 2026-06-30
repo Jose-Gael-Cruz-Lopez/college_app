@@ -412,6 +412,14 @@ a:focus-visible, button:focus-visible, [role='button']:focus-visible { outline: 
     rotate(calc(var(--rot) * var(--inward)));
 }
 .itile__inner {
+  will-change: transform;
+  animation: itileFloat var(--fdur) ease-in-out var(--fdelay) infinite alternate;
+}
+.itile__media {
+  display: block; width: 100%; height: auto; aspect-ratio: 3 / 4;
+  object-fit: cover; border-radius: 2px;
+  box-shadow: 0 8px 22px rgba(40, 38, 32, 0.07);
+  opacity: 0;
    RESPONSIVE
    ============================================================ */
 @media (max-width: 860px) {
