@@ -62,12 +62,7 @@ npm run preview    # serve the production build
 
 ---
 
-```bash
-npm run typecheck    # tsc, no emit
-npm run lint         # ESLint (flat config, TS + react-hooks)
-npm run format       # Prettier write   (format:check to verify)
-npm test             # Vitest + Testing Library (jsdom)
-```
+## Available scripts
 
 Tests live next to the code they cover (`*.test.ts[x]`) and include
 `computePlan` branch coverage, storage round-trips, component unit tests,
