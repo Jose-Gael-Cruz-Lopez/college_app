@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="760" viewBox="0 0 1600 760" role="img" aria-label="Studio portrait placeholder">
+  <rect width="1600" height="760" fill="#E9ECE2"/>
+  <rect x="70" y="90" width="150" height="150" rx="16" fill="#6FB1E0"/>
+  <rect x="70" y="270" width="150" height="220" rx="16" fill="#2B2B28"/>
+  <circle cx="300" cy="170" r="58" fill="#E8491D"/>
+  <rect x="1180" y="70" width="170" height="120" rx="16" fill="#F2C94C"/>
+  <circle cx="1470" cy="200" r="70" fill="#E6A4C4"/>
+  <rect x="1380" y="320" width="160" height="200" rx="16" fill="#9CE6A8"/>
+  <rect x="1180" y="520" width="200" height="150" rx="16" fill="#2B2B28"/>
+  <ellipse cx="800" cy="700" rx="240" ry="200" fill="#9FB089"/>
+  <circle cx="800" cy="360" r="140" fill="#B0C09B"/>
+  <text x="800" y="415" font-family="Geist, Inter, system-ui, sans-serif" font-size="170" font-weight="600" fill="#FBFAF1" text-anchor="middle">H</text>
+</svg>
