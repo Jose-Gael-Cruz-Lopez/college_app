@@ -183,6 +183,20 @@ reach/target/likely list, and a track.
   | `--accent`  | `#E8491D`   | orange accent       |
   | `--card`    | `#FBFAF1`   | surfaces            |
   | `--hairline`| `#C9C6BE`   | rules / borders     |
+- **Motion** — scroll-triggered reveals and rotating hairline "slashes",
+  re-scanned on each route change (`IntersectionObserver` + visibility/timeout
+  fallback), plus the Home intro animation above. All respect
+  `prefers-reduced-motion`.
+- **Icons** — original freehand line icons, plus the supplied
+  `learn-write.png` for the Learn & write step.
+
+---
+
+## Accessibility
+
+- Skip link, `main` landmark, and visible focus styles.
+- The menu dialog has dialog semantics and moves focus on open.
+- Router options are keyboard-operable.
 ## Deployment
 
 This is a client-routed SPA, so the host must serve `index.html` for every
