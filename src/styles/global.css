@@ -60,8 +60,8 @@ a:focus-visible, button:focus-visible, [role='button']:focus-visible { outline: 
 .accent { color: var(--accent); }
 
 .wordmark { display: inline-flex; align-items: center; }
-.wordmark__img { display: block; height: 60px; width: auto; }
-.wordmark--lg .wordmark__img { height: 80px; }
+.wordmark__img { display: block; height: 76px; width: auto; }
+.wordmark--lg .wordmark__img { height: 100px; }
 
 /* slashes — diagonal hairlines, rotated in by motion */
 .slash {
