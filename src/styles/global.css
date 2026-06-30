@@ -380,6 +380,14 @@ a:focus-visible, button:focus-visible, [role='button']:focus-visible { outline: 
   position: sticky; top: 0; height: 100vh; overflow: hidden;
   display: flex; align-items: center; justify-content: center;
 }
+.intro__field { position: absolute; inset: 0; pointer-events: none; }
+.intro__title {
+  position: relative; z-index: 4; margin: 0; text-align: center;
+  font-family: var(--mono); font-weight: 700; letter-spacing: -0.02em;
+  font-size: clamp(40px, 8.2vw, 120px); line-height: 0.98; color: var(--ink);
+  text-transform: none;
+  animation: introTitle 1s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
    RESPONSIVE
    ============================================================ */
 @media (max-width: 860px) {
