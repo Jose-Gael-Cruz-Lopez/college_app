@@ -3,10 +3,11 @@ import { render } from '@testing-library/react';
 import { Wordmark } from './Wordmark';
 
 describe('Wordmark', () => {
-  it('renders the full wordmark with a blue (Ad) accent', () => {
+  it('renders the logo image with accessible alt text', () => {
     const { container } = render(<Wordmark />);
-    expect(container.textContent).toBe('(Ad)mission Possible');
-    expect(container.querySelector('.accent')?.textContent).toBe('(Ad)');
+    const img = container.querySelector('img.wordmark__img');
+    expect(img?.getAttribute('src')).toBe('/logo.png');
+    expect(img?.getAttribute('alt')).toBe('Admission Possible');
   });
 
   it('applies the white modifier', () => {
