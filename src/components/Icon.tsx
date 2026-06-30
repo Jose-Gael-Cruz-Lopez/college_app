@@ -92,6 +92,14 @@ const PATHS: Record<Exclude<IconName, 'write'>, ReactNode> = {
   ),
 };
 
+// Icons supplied as PNGs instead of inline SVG paths.
+const PNG_ICONS: Partial<Record<IconName, string>> = {
+  write: '/icons/learn-write.png',
+  list: '/icons/list.png',
+  submit: '/icons/submit.png',
+  apply: '/icons/apply.png',
+};
+
 interface IconProps {
   name: IconName;
   /** Wrapper class that sets --icon-size and margins (e.g. step-icon, row-icon). */
@@ -100,17 +108,18 @@ interface IconProps {
 
 export function Icon({ name, className }: IconProps) {
   const cls = `icon${className ? ' ' + className : ''}`;
-  if (name === 'write') {
+  const png = PNG_ICONS[name];
+  if (png) {
     return (
       <span className={cls} aria-hidden="true">
-        <img className="icon-img" src="/icons/learn-write.png" alt="" />
+        <img className="icon-img" src={png} alt="" />
       </span>
     );
   }
   return (
     <span className={cls} aria-hidden="true">
       <svg {...svgProps} style={{ width: 'var(--icon-size, 30px)', height: 'var(--icon-size, 30px)' } as CSSProperties}>
-        {PATHS[name]}
+        {PATHS[name as keyof typeof PATHS]}
       </svg>
     </span>
   );
