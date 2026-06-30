@@ -58,46 +58,12 @@ const TILES: Tile[] = [
 ];
 
 export function IntroFloat() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const stageRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    const stage = stageRef.current;
-    if (!section || !stage) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    let ticking = false;
-    const update = () => {
-      ticking = false;
-      // Progress over the section's pinned travel: 0 = hero entering, 1 = leaving.
-      const rect = section.getBoundingClientRect();
-      const range = section.offsetHeight - window.innerHeight;
-      const p = range > 0 ? Math.min(Math.max(-rect.top / range, 0), 1) : 0;
-      // Inward peaks (=1) around p≈0.45, easing back to 0 (outward) at both ends.
-      const norm = p < 0.45 ? p / 0.45 : (1 - p) / 0.55;
-      const tri = Math.min(Math.max(norm, 0), 1);
-      const inward = tri * tri * (3 - 2 * tri); // smoothstep
-      stage.style.setProperty('--inward', inward.toFixed(4));
-    };
-    const onScroll = () => {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(update);
-    };
-
-    update();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
-    };
-  }, []);
-
+  // The inward → outward drift is driven entirely by the CSS animation on
+  // `.intro__stage` (animating the registered `--inward` custom property), so
+  // it plays automatically without any scroll wiring.
   return (
-    <section ref={sectionRef} className="intro" aria-label="Intro">
-      <div ref={stageRef} className="intro__stage">
+    <section className="intro" aria-label="Intro">
+      <div className="intro__stage">
         <div className="intro__field" aria-hidden="true">
           {TILES.map((t, i) => {
             const d = DEPTH[t.depth];
