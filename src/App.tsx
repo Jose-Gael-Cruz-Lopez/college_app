@@ -11,6 +11,7 @@ import ListBuilder from './pages/ListBuilder';
 import Router from './pages/Router';
 import Plan from './pages/Plan';
 import Dashboard from './pages/Dashboard';
+import TeamMember from './pages/TeamMember';
 
 export default function App() {
   return (
