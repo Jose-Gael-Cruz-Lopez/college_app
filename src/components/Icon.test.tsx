@@ -4,7 +4,7 @@ import { Icon } from './Icon';
 
 describe('Icon', () => {
   it('renders an SVG icon for a vector name', () => {
-    const { container } = render(<Icon name="route" />);
+    const { container } = render(<Icon name="bookmark" />);
     const wrapper = container.querySelector('.icon');
     expect(wrapper).not.toBeNull();
     expect(wrapper?.querySelector('svg')).not.toBeNull();
