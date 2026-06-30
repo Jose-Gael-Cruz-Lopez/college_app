@@ -396,6 +396,14 @@ a:focus-visible, button:focus-visible, [role='button']:focus-visible { outline: 
 
 /* Three composed layers so the motions never fight over `transform`:
    .itile        — scatter position + scroll-linked inward/outward parallax
+   .itile__inner — continuous idle drift
+   .itile__media — one-shot load arrival (from an exaggerated outer offset) */
+.itile {
+  --ms: 1; /* movement scale — reduced on small screens */
+  position: absolute; width: var(--w);
+  opacity: calc(var(--o) * (0.7 + 0.3 * var(--inward)));
+  filter: blur(var(--blur));
+  will-change: transform;
    RESPONSIVE
    ============================================================ */
 @media (max-width: 860px) {
