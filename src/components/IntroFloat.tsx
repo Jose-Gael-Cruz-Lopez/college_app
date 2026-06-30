@@ -117,3 +117,10 @@ export function IntroFloat() {
               <div
                 key={i}
                 className={`itile itile--${t.depth} itile--${t.vis}`}
+                style={
+                  {
+                    left: `${t.x}%`,
+                    top: `${t.y}%`,
+                    width: `${t.w}px`,
+                    zIndex: d.z,
+                    '--ox': `${(ux * outDist).toFixed(1)}px`,
