@@ -49,6 +49,7 @@ The original vanilla implementation is preserved in git history (see the
 | Tests          | **Vitest** + **Testing Library** (jsdom)|
 | Hosting        | Static SPA (Vercel rewrite / SPA fallback) |
 
+---
 
 ## Getting started
 
