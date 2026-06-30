@@ -25,6 +25,14 @@ college list, and a study track — followed by a student dashboard.
 
 ---
 
+## Overview
+
+(Ad)mission Possible is a single-page app (migrated from a vanilla
+multi-page site) that walks a student from a bold landing page through a
+7-question intake and into a personalized plan and dashboard. The goal is to
+make the application process legible for students who are navigating it
+without a map.
+
 The original vanilla implementation is preserved in git history (see the
 `legacy/` directory before the migration commits).
 
