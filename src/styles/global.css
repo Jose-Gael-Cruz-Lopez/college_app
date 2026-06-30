@@ -388,6 +388,14 @@ a:focus-visible, button:focus-visible, [role='button']:focus-visible { outline: 
   text-transform: none;
   animation: introTitle 1s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
 }
+.intro__title span { display: block; }
+@keyframes introTitle {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Three composed layers so the motions never fight over `transform`:
+   .itile        — scatter position + scroll-linked inward/outward parallax
    RESPONSIVE
    ============================================================ */
 @media (max-width: 860px) {
