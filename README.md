@@ -95,8 +95,7 @@ src/
     IntroFloat.tsx      # the Home floating-image hero (see below)
   pages/                # Home, How, Offer, Pathways, Coaching, Join,
                         # WritingCourse, ListBuilder, Router, Plan, Dashboard
-  styles/global.css     # the full design system (ported verbatim)
-public/icons/           # static assets (the supplied learn-write pencil)
+  styles/global.css     # the full design system
 ```
 
 ## Routes
