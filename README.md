@@ -60,7 +60,7 @@ npm run build      # type-check (tsc -b) + production build to dist/
 npm run preview    # serve the production build
 ```
 
-## Quality
+---
 
 ```bash
 npm run typecheck    # tsc, no emit
