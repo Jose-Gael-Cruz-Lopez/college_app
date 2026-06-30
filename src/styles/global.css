@@ -472,11 +472,24 @@ a:focus-visible, button:focus-visible, [role='button']:focus-visible { outline: 
 /* ============================================================
    INTRO — floating-tiles scroll story (Floema-style)
    ============================================================ */
-.intro { position: relative; height: 170vh; }
+/* --inward: 1 = tiles clustered toward centre, 0 = dispersed outward.
+   Registered so it can be smoothly interpolated by an animation. */
+@property --inward {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+.intro { position: relative; height: 100vh; }
 .intro__stage {
   --inward: 0;
-  position: sticky; top: 0; height: 100vh; overflow: hidden;
+  position: relative; height: 100vh; overflow: hidden;
   display: flex; align-items: center; justify-content: center;
+  /* Auto-play the inward → outward drift; no scroll required. */
+  animation: introDrift 9s ease-in-out 0.3s infinite alternate;
+}
+@keyframes introDrift {
+  from { --inward: 1; }
+  to   { --inward: 0; }
 }
 .intro__field { position: absolute; inset: 0; pointer-events: none; }
 .intro__title {
