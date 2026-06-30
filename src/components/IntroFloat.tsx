@@ -19,3 +19,10 @@ type Tile = {
   x: number; // % left  (50 = centre)
   y: number; // % top   (50 = centre)
   w: number; // px width
+  img: number;
+  depth: Depth;
+  o: number; // base opacity
+  rot: number; // max rotation (deg) reached at full inward
+  vis: Vis;
+};
+
