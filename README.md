@@ -17,6 +17,7 @@ college list, and a study track — followed by a student dashboard.
 - [Project structure](#project-structure)
 - [Routes](#routes)
 - [Home intro animation](#home-intro-animation)
+- [Founding team](#founding-team)
 - [The intake flow](#the-intake-flow)
 - [Design system](#design-system)
 - [Accessibility](#accessibility)
@@ -80,21 +81,26 @@ npm run preview    # serve the production build
 
 ```
 public/
-  icons/                # static assets (the supplied learn-write pencil)
+  icons/                # PNG icons (menu, route, course, coaching, people,
+                        # list, submit, apply, learn-write)
   intro/                # thumbnail art for the Home intro animation (t1–t8.svg)
+  team/                 # founding-team photos + placeholder portraits
 src/
   main.tsx              # entry; mounts <App/> in <BrowserRouter>
   App.tsx               # routes, all nested under the Chrome layout
   types.ts              # shared domain types
-  data/                 # nav, questions, pathways, computePlan, sessionStorage
+  data/                 # nav, questions, pathways, computePlan, sessionStorage,
+                        # team (founding-team content)
   hooks/
     useReveal.ts        # scroll reveal/slash + hero scramble (per route)
     useScrollHideHeader.ts
   components/
     Chrome, Header, Menu, Footer, Crumbs, Icon, Circle, Slash, Wordmark
     IntroFloat.tsx      # the Home floating-image hero (see below)
+    TeamCard.tsx        # tilted founding-team card on the Home page
   pages/                # Home, How, Offer, Pathways, Coaching, Join,
-                        # WritingCourse, ListBuilder, Router, Plan, Dashboard
+                        # WritingCourse, ListBuilder, Router, Plan, Dashboard,
+                        # TeamMember (the "My story" profile page)
   styles/global.css     # the full design system
 ```
 
@@ -106,17 +112,18 @@ src/
 
 ## Routes
 
-| Path                               | Page                 |
-| ---------------------------------- | -------------------- |
-| `/`                                | Home                 |
-| `/how`                             | How it works         |
-| `/offer`                           | What we offer        |
-| `/writing-course`                  | The writing course   |
-| `/list-builder`                    | College list builder |
-| `/pathways`                        | Application pathways |
-| `/coaching`                        | Coaching             |
-| `/join`                            | Join                 |
-| `/router` → `/plan` → `/dashboard` | The intake flow      |
+| Path                               | Page                  |
+| ---------------------------------- | --------------------- |
+| `/`                                | Home                  |
+| `/how`                             | How it works          |
+| `/offer`                           | What we offer         |
+| `/writing-course`                  | The writing course    |
+| `/list-builder`                    | College list builder  |
+| `/pathways`                        | Application pathways  |
+| `/coaching`                        | Coaching              |
+| `/join`                            | Join                  |
+| `/team/:slug`                      | Founding-team profile |
+| `/router` → `/plan` → `/dashboard` | The intake flow       |
 
 ---
 
@@ -133,30 +140,48 @@ deadline."_ sits centered while ~20 thumbnail images orbit it.
   drive size, opacity, blur, z-index, and movement amount.
 - **Load animation** — each image arrives from an exaggerated outer offset,
   fading and scaling into place on a staggered `cubic-bezier(0.16, 1, 0.3, 1)`.
-- **Scroll-linked inward → outward** — progress across the section feeds a
-  `--inward` custom property (peaks ~45% scroll). Tiles interpolate between an
-  outward vector (ends) and an inward vector (mid), so they travel toward the
-  headline and then release back out.
+- **Auto-play inward → outward** — a CSS animation drives a registered
+  `@property --inward` custom property (no scrolling required). Tiles
+  interpolate between an inward vector (clustered toward the headline) and an
+  outward vector (dispersed), looping gently so the field breathes on its own.
 - **Continuous drift** — each image has an independent looping float on a
-  separate layer, so idle motion never fights the scroll transform.
+  separate layer, so idle motion never fights the auto-drift transform.
 
 **Three-layer composition** keeps transforms from colliding:
 
-| Layer           | Owns                               |
-| --------------- | ---------------------------------- |
-| `.itile`        | scatter position + scroll parallax |
-| `.itile__inner` | continuous idle drift              |
-| `.itile__media` | one-shot load arrival              |
+| Layer           | Owns                          |
+| --------------- | ----------------------------- |
+| `.itile`        | scatter position + auto drift |
+| `.itile__inner` | continuous idle drift         |
+| `.itile__media` | one-shot load arrival         |
 
 **Performance & a11y** — only `transform` / `opacity` animate, `will-change`
 is scoped to animated wrappers, far images lazy-load, and
-`prefers-reduced-motion` disables drift/parallax in favour of a static
-fade-in. The headline is always real text.
+`prefers-reduced-motion` disables drift in favour of a static fade-in. The
+headline is always real text.
 
 **Swapping in real photos** — drop files into `public/intro/` and update the
 `IMAGES` array at the top of `IntroFloat.tsx`; positions and motion keep
 working unchanged. The included `t1.svg`–`t8.svg` are brand-palette
 placeholders.
+
+---
+
+## Founding team
+
+The Home page has a **Founding team** section: three tilted orange cards
+(`TeamCard.tsx`), each straightening and lifting on hover. Content lives in
+`src/data/team.ts` (a single source of truth shared by the cards and the
+profile pages), so a card and its page never drift apart.
+
+Each card links to `/team/:slug`, rendering `TeamMember.tsx` — a "My story"
+profile in Geist: a light heading, a three-column row (journey path /
+narrative / a bold belief statement with a muted sub-paragraph), a wide hero
+image, a row of pastel skill pills, and a "Back to Home" pill in the top-left.
+
+**Swapping in real photos** — drop files into `public/team/` and update the
+`photo` (card, 15:11) and `storyPhoto` (wide hero) paths in `team.ts`. The
+`*.svg` files are brand-palette placeholders; real photos override them.
 
 ---
 
@@ -173,22 +198,26 @@ reach/target/likely list, and a track.
 
 ## Design system
 
-- **Type** — Geist Mono (display) + Inter (body).
+- **Type** — Geist Mono (display) + Geist (`--display`, used on the team cards
+  and profile pages) + Inter (body).
 - **Palette**
-  | Token        | Value     | Use              |
-  | ------------ | --------- | ---------------- |
-  | `--bg`       | `#F5F2E0` | warm cream paper |
-  | `--ink`      | `#3A3A36` | text             |
-  | `--muted`    | `#6F6E68` | secondary text   |
-  | `--accent`   | `#E8491D` | orange accent    |
-  | `--card`     | `#FBFAF1` | surfaces         |
-  | `--hairline` | `#C9C6BE` | rules / borders  |
+  | Token           | Value     | Use                         |
+  | --------------- | --------- | --------------------------- |
+  | `--bg`          | `#F5F2E0` | warm cream paper            |
+  | `--ink`         | `#3A3A36` | text                        |
+  | `--muted`       | `#6F6E68` | secondary text              |
+  | `--accent`      | `#E8491D` | orange accent               |
+  | `--accent-soft` | `#F26B43` | lighter orange (team cards) |
+  | `--mint`        | `#9CE6A8` | mint accent                 |
+  | `--card`        | `#FBFAF1` | surfaces                    |
+  | `--hairline`    | `#C9C6BE` | rules / borders             |
 - **Motion** — scroll-triggered reveals and rotating hairline "slashes",
   re-scanned on each route change (`IntersectionObserver` + visibility/timeout
   fallback), plus the Home intro animation above. All respect
   `prefers-reduced-motion`.
-- **Icons** — original freehand line icons, plus the supplied
-  `learn-write.png` for the Learn & write step.
+- **Icons** — `Icon.tsx` renders a name to either an inline freehand SVG or a
+  supplied PNG via the `PNG_ICONS` map (menu, route, course, coaching, people,
+  list, submit, apply, learn-write); the rest stay vector.
 
 ---
 
