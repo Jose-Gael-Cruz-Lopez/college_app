@@ -1,8 +1,8 @@
 import type { CSSProperties, ReactNode } from 'react';
 import type { IconName } from '../types';
 
-// Freehand line icons (original work) plus the supplied pencil PNG for `write`.
-// Mirrors the legacy icons.js map.
+// Two icon sources: inline freehand SVG paths (PATHS) and supplied PNGs
+// (PNG_ICONS, which takes precedence). Names not in either render nothing.
 
 const svgProps = {
   viewBox: '0 0 48 48',
@@ -13,42 +13,8 @@ const svgProps = {
   strokeLinejoin: 'round' as const,
 };
 
-const PATHS: Record<Exclude<IconName, 'write'>, ReactNode> = {
-  route: (
-    <>
-      <circle cx="24" cy="24" r="17" />
-      <path d="M31 17l-5 9-9 5 5-9z" />
-      <circle cx="24" cy="24" r="1.3" />
-    </>
-  ),
-  list: (
-    <>
-      <path d="M20 13h19" />
-      <path d="M20 24h19" />
-      <path d="M20 35h19" />
-      <path d="M8 11l2.5 3 4-5" />
-      <path d="M8 22l2.5 3 4-5" />
-      <path d="M8.5 34h4.5" />
-    </>
-  ),
-  apply: (
-    <>
-      <path d="M44 5L4 19l18 7 7 18z" />
-      <path d="M44 5L22 26" />
-    </>
-  ),
-  submit: (
-    <>
-      <path d="M13 6v37" />
-      <path d="M13 8c7-4 14 4 23 0v15c-9 4-16-4-23 0z" />
-    </>
-  ),
-  course: (
-    <>
-      <path d="M7 11c8-4 17 1 17 1s9-5 17-1v25c-8-4-17 1-17 1s-9-5-17-1z" />
-      <path d="M24 13v25" />
-    </>
-  ),
+// Remaining inline freehand icons (the rest are PNGs below).
+const PATHS: Partial<Record<IconName, ReactNode>> = {
   bookmark: <path d="M14 6h20c.6 0 1 .5 1 1v35l-11-9-11 9V7c0-.5.4-1 1-1z" />,
   calendar: (
     <>
@@ -61,26 +27,11 @@ const PATHS: Record<Exclude<IconName, 'write'>, ReactNode> = {
       <path d="M16 34h5" />
     </>
   ),
-  coaching: (
-    <>
-      <path d="M8 12h32c.6 0 1 .5 1 1v18c0 .6-.5 1-1 1H21l-8 8v-8H8c-.6 0-1-.4-1-1V13c0-.5.5-1 1-1z" />
-      <path d="M16 20h16" />
-      <path d="M16 26h10" />
-    </>
-  ),
   next: (
     <>
       <path d="M24 6C14 6 6 14 6 24s8 18 18 18 18-8 18-18S34 6 24 6z" />
       <path d="M18 24h13" />
       <path d="M25 18l7 6-7 6" />
-    </>
-  ),
-  people: (
-    <>
-      <path d="M18 18a5 5 0 100-10 5 5 0 000 10z" />
-      <path d="M9 38c0-6 4-11 9-11s9 5 9 11" />
-      <path d="M31 14a4 4 0 11.5 8" />
-      <path d="M30 28c5 0 9 5 9 10" />
     </>
   ),
   money: (
@@ -92,7 +43,7 @@ const PATHS: Record<Exclude<IconName, 'write'>, ReactNode> = {
   ),
 };
 
-// Icons supplied as PNGs instead of inline SVG paths.
+// Icons supplied as PNGs instead of inline SVG paths (take precedence).
 const PNG_ICONS: Partial<Record<IconName, string>> = {
   route: '/icons/route.png',
   coaching: '/icons/coaching.png',
@@ -123,7 +74,7 @@ export function Icon({ name, className }: IconProps) {
   return (
     <span className={cls} aria-hidden="true">
       <svg {...svgProps} style={{ width: 'var(--icon-size, 30px)', height: 'var(--icon-size, 30px)' } as CSSProperties}>
-        {PATHS[name as keyof typeof PATHS]}
+        {PATHS[name]}
       </svg>
     </span>
   );
