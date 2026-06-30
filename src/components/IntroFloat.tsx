@@ -159,3 +159,10 @@ export function IntroFloat() {
                       } as React.CSSProperties
                     }
                   />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <h1 className="intro__title">
