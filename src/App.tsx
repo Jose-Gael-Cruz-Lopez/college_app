@@ -28,6 +28,7 @@ export default function App() {
         <Route path="/router" element={<Router />} />
         <Route path="/plan" element={<Plan />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/team/:slug" element={<TeamMember />} />
         <Route path="*" element={<Home />} />
       </Route>
     </Routes>
