@@ -148,6 +148,100 @@ a:focus-visible, button:focus-visible, [role='button']:focus-visible { outline: 
   display: flex; flex-direction: column; gap: 34px;
 }
 
+/* ---- founding team (tilted mint photo cards) ---- */
+.team { padding: 90px var(--pad-x) 100px; }
+.team__head { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 24px; align-items: baseline; padding: 30px 0 56px; }
+.team__intro { margin: 0; max-width: 46ch; font-size: 17px; line-height: 1.5; }
+.team__cards {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: clamp(24px, 4vw, 56px);
+  align-items: start;
+}
+/* Each card lifts to a different orientation; middle one sits lower for rhythm. */
+.team__cards > :nth-child(2) { margin-top: 40px; }
+.team__cards > :nth-child(3) { margin-top: 14px; }
+
+.teamcard {
+  display: block; text-decoration: none; color: var(--card);
+  background: var(--accent-soft); border-radius: 32px;
+  padding: 22px 22px 26px;
+  transform: rotate(var(--tilt, 0deg));
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  box-shadow: 0 10px 30px rgba(40, 38, 32, 0.08);
+  will-change: transform;
+}
+.teamcard:hover, .teamcard:focus-visible {
+  transform: rotate(0deg) translateY(-6px);
+  box-shadow: 0 22px 46px rgba(40, 38, 32, 0.16);
+}
+.teamcard__name {
+  margin: 4px 4px 18px;
+  font-family: var(--display); font-weight: 600; letter-spacing: -0.02em;
+  font-size: clamp(26px, 2.4vw, 34px); line-height: 1; color: var(--card);
+}
+.teamcard__frame { border-radius: 18px; overflow: hidden; background: #cdcabf; }
+.teamcard__photo {
+  display: block; width: 100%; height: auto; aspect-ratio: 15 / 11; object-fit: cover;
+}
+.teamcard__link {
+  display: block; margin: 18px 4px 2px;
+  font-family: var(--display); font-weight: 500; font-size: 18px; color: var(--card);
+}
+.teamcard:hover .teamcard__link { text-decoration: underline; }
+
+@media (prefers-reduced-motion: reduce) {
+  .teamcard { transition: none; }
+}
+
+/* ---- team member "My story" page ---- */
+.story { padding-top: 56px; }
+.story__back {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 11px 22px 11px 18px; border-radius: 999px;
+  border: 1px solid var(--hairline); background: var(--card);
+  font-family: var(--display); font-weight: 500; font-size: 16px; color: var(--ink);
+  text-decoration: none; transition: border-color 0.2s ease, background 0.2s ease;
+}
+.story__back span { font-size: 18px; line-height: 1; }
+.story__back:hover { border-color: var(--ink); background: #fff; }
+.story__title {
+  font-family: var(--display); font-weight: 300; letter-spacing: -0.03em;
+  font-size: clamp(54px, 9vw, 132px); line-height: 0.95; margin: 48px 0 70px; color: var(--ink);
+}
+.story__grid {
+  display: grid; grid-template-columns: 1fr 1.15fr 1.15fr;
+  gap: clamp(28px, 4vw, 64px); align-items: start;
+}
+.story__path { margin: 6px 0 0; font-family: var(--display); font-size: 15px; color: #9a988f; }
+.story__bio { margin: 0; font-family: var(--display); font-weight: 400; font-size: 17px; line-height: 1.55; color: #56544c; }
+.story__belief-col { display: flex; flex-direction: column; gap: 22px; }
+.story__belief {
+  margin: 0; font-family: var(--display); font-weight: 600; letter-spacing: -0.01em;
+  font-size: clamp(23px, 2vw, 31px); line-height: 1.26; color: var(--ink);
+}
+.story__belief-sub { margin: 0; font-family: var(--display); font-weight: 400; font-size: 15px; line-height: 1.55; color: #9a988f; }
+
+.story__photo-wrap {
+  margin: clamp(48px, 6vw, 80px) 0 clamp(36px, 4vw, 56px);
+  border-radius: 22px; overflow: hidden; background: #e7e4da;
+}
+.story__photo { display: block; width: 100%; height: clamp(360px, 46vw, 660px); object-fit: cover; }
+
+.story__tags {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;
+}
+.story__tag {
+  padding: 9px 20px; border-radius: 999px; color: #fff;
+  font-family: var(--display); font-weight: 600; text-transform: uppercase;
+  font-size: 12px; letter-spacing: 0.06em;
+}
+
+@media (max-width: 860px) {
+  .story__grid { grid-template-columns: 1fr; gap: 28px; }
+  .story__path { margin-top: 0; }
+}
+
 /* ---- freehand icons ---- */
 .icon { display: inline-flex; align-items: center; justify-content: center; color: var(--ink); }
 .icon svg { width: var(--icon-size, 30px); height: var(--icon-size, 30px); display: block; }
